@@ -1,9 +1,13 @@
 import { Link, Outlet } from "react-router-dom";
 import React, { useState } from "react";
 import {
-  AppstoreOutlined,
-  MailOutlined,
+  BankFilled,
+  MailFilled,
   SettingOutlined,
+  UserOutlined,
+  UserAddOutlined,
+  PhoneFilled,
+  HomeFilled,
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Menu } from "antd";
@@ -12,12 +16,12 @@ const items: MenuProps["items"] = [
   {
     label: <Link to={"/"}>Home</Link>,
     key: "home",
-    icon: <MailOutlined />,
+    icon: <HomeFilled />,
   },
   {
     label: <Link to={"restaurants"}>Restaurants</Link>,
     key: "app",
-    icon: <AppstoreOutlined />,
+    icon: <BankFilled />,
   },
   {
     label: "Contact Us",
@@ -30,10 +34,34 @@ const items: MenuProps["items"] = [
           {
             label: "Phone number",
             key: "setting:1",
+            icon:<PhoneFilled />,
           },
           {
             label: "Email",
             key: "setting:2",
+            icon:<MailFilled />,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Account",
+    key: "Account",
+    icon: <SettingOutlined />,
+    children: [
+      {
+        type: "group",
+        children: [
+          {
+            label: <Link to={"login"}>Login</Link>,
+            key: "login",
+            icon: <UserOutlined />,
+          },
+          {
+            label: <Link to={"register"}>Register</Link>,
+            key: "register",
+            icon: <UserAddOutlined />,
           },
         ],
       },
