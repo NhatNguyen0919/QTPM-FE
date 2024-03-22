@@ -1,47 +1,90 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Button, Space, Table, Tag, Select } from "antd";
+import type { TableProps } from "antd";
+import { useNavigate } from "react-router";
 
 const RestaurantPage = () => {
-    const [search,setSearch]= useState('')
+  const [datasearch, setDatasearch] = useState<any>([]);
+  const navigate = useNavigate();
+  const [dataDis, setDataDis] = useState<any>("");
 
-     const [datasearch,setDatasearch] = useState<string[]>([])   
+  useEffect(() => {
+    getAllData();
+  }, []);
 
-     const handleSearch = () => { 
-          setDatasearch(prev => [...prev,search])
-          setSearch('')
-     }      
-     
-     console.log(datasearch)
+  const getAllData = async () => {
+    try {
+      const res: any = await axios.get(
+        "http://localhost:3001/api/restaurant/getall"
+      );
+      const data = await res.data.message;
+      if (data) {
+        setDatasearch(data);
+      } else {
+        console.log("Pending");
+      }
+      console.log("check data : ", datasearch[0].district);
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  };
+
+  const handleChangeRoute = (values: any) => {
+    navigate(`/restaurant/${values}`);
+  };
+
+  const columns: TableProps<any>["columns"] = [
+    {
+      title: "Image",
+      dataIndex: "image",
+      key: "image",
+      width: "300px",
+      render: (img) => (
+        <>
+          <img src={img} width={200} height={200} alt="" />
+        </>
+      ),
+    },
+    {
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
+      width: "200px",
+      render: (text) => <a>{text}</a>,
+    },
+    {
+      title: "Address",
+      dataIndex: "address",
+      key: "address",
+      width: "200px",
+      render: (text) => <a>{text}</a>,
+    },
+    {
+      title: "Phone",
+      dataIndex: "phone",
+      key: "phone",
+      width: "200px",
+      render: (text) => <a>{text}</a>,
+    },
+    {
+      dataIndex: "_id",
+      key: "_id",
+      render: (id) => (
+        <>
+          <Button onClick={() => handleChangeRoute(id)}>Click here</Button>
+        </>
+      ),
+    },
+  ];
+
   return (
     <div className="flex flex-col gap-8 h-screen items-center border-red-500 justify-center">
+      <h3 className="font-bold text-xl">Danh Sach Res</h3>
       <div className="flex gap-8">
-      <input
-      type="text"
-      className="outline-none border border-blue-500 px-4 py-2 w-[400px]"
-      value={search}
-      onChange={e => setSearch(e.target.value)}
-      />
-      <button 
-        type="button"
-        className="outline-none px-4 py-2 bg-blue-500 rounded-md text-white"
-        onClick={handleSearch}
-      >
-        Search
-      </button>
+        <Select style={{ width: 300 }} />
       </div>
-      <div>
-        <h3 className="font-bold text-xl">
-          Da search
-        </h3>
-        <ul>
-          {datasearch?.map(item => {
-            return (
-              <li key={item}>
-                {item}
-              </li>
-            )
-          })}
-        </ul>
-      </div>
+      <Table columns={columns} dataSource={datasearch} />
     </div>
   );
 };
