@@ -53,20 +53,20 @@ const RegisterPage = () => {
   };
 
   return (
-    <section className="min-h-screen bg-cover object-cover bg-[url('https://images.unsplash.com/photo-1654840265439-bd2e5fad7379?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]">
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    <section className="min-h-screen bg-center bg-cover object-cover bg-[url('https://images.unsplash.com/photo-1514361892635-6b07e31e75f9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]">
+      <div className="flex flex-col items-center justify-center px-3 py-4 mx-auto md:h-screen lg:py-0">
         <a
           href="#"
-          className="flex items-center mb-4 text-6xl font-serif text-gray-900 dark:text-white"
+          className="flex items-center mb-4 text-6xl font-serif text-gray-900 text-yellow-400 dark:text-white"
         >
           REGISTER
         </a>
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-          <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+          <div className="p-2 space-y-2 md:space-y-3 sm:p-4">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
               Create and account
             </h1>
-            <form className="space-y-4 md:space-y-6" action="#">
+            <form className="space-y-2 md:space-y-3" action="#">
               <div>
                 <label
                   form="email"
@@ -137,12 +137,15 @@ const RegisterPage = () => {
               <button
                 onClick={handleRegister}
                 type="button"
-                className="w-full text-black bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                className="w-full text-white bg-blue-500 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
               >
                 Create an account
               </button>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                Already have an account? <Link to={"/login"}>Login here</Link>
+                Already have an account?{" "}
+                <Link to={"/login"} className="hover:text-blue-700	">
+                  Login here
+                </Link>
               </p>
             </form>
           </div>

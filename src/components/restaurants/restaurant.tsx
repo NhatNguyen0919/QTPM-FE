@@ -1,16 +1,19 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Button, Space, Table, Tag, Select } from "antd";
+import { Button, Space, Table, Tag, Select, Input } from "antd";
 import type { TableProps } from "antd";
 import { useNavigate } from "react-router";
+import { SearchProps } from "antd/es/input";
 
 const RestaurantPage = () => {
   const [datasearch, setDatasearch] = useState<any>([]);
   const navigate = useNavigate();
   const [dataDis, setDataDis] = useState<any>("");
-
+  const { Search } = Input;
+  const [dataServer, setDataServer] = useState<any>("");
   useEffect(() => {
     getAllData();
+    returnTable();
   }, []);
 
   const getAllData = async () => {
@@ -24,7 +27,6 @@ const RestaurantPage = () => {
       } else {
         console.log("Pending");
       }
-      console.log("check data : ", datasearch[0].district);
     } catch (error) {
       console.log("Error:", error);
     }
@@ -32,6 +34,24 @@ const RestaurantPage = () => {
 
   const handleChangeRoute = (values: any) => {
     navigate(`/restaurant/${values}`);
+  };
+
+  const handleOnChange: SearchProps["onSearch"] = async (value, _e, info) => {
+    setDataDis(value);
+    try {
+      const res: any = await axios.get(
+        `http://localhost:3001/api/restaurant/find-res/${dataDis}`
+      );
+      const dataRes = res.data.message;
+      if (dataRes) {
+        setDataServer(dataRes);
+        console.log("check : res", dataServer);
+      } else {
+        console.log("User not found");
+      }
+    } catch (error) {
+      console.log("Error:", error);
+    }
   };
 
   const columns: TableProps<any>["columns"] = [
@@ -78,13 +98,29 @@ const RestaurantPage = () => {
     },
   ];
 
+  const returnTable = () => {
+    return (
+      <>
+        <Table
+          columns={columns}
+          dataSource={dataServer ? [{ ...dataServer }] : datasearch}
+        />
+      </>
+    );
+  };
+
   return (
-    <div className="flex flex-col gap-8 h-screen items-center border-red-500 justify-center">
-      <h3 className="font-bold text-xl">Danh Sach Res</h3>
+    <div className="flex flex-col gap-8 items-center border-red-500 justify-center">
+      <h3 className="font-bold text-xl">Restaurant List</h3>
       <div className="flex gap-8">
-        <Select style={{ width: 300 }} />
+        <Search
+          placeholder="input search text"
+          size="large"
+          enterButton="Search"
+          onSearch={handleOnChange}
+        />
       </div>
-      <Table columns={columns} dataSource={datasearch} />
+      {returnTable()}
     </div>
   );
 };

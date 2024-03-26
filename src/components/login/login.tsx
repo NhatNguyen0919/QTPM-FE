@@ -56,7 +56,7 @@ const LoginPage = () => {
     }
   };
   return (
-    <div className="min-h-screen bg-cover object-cover pr-56 bg-[url('https://images.unsplash.com/photo-1549905314-a716f4556858?q=80&w=1776&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]">
+    <div className="min-h-screen bg-cover object-cover pr-56 bg-[url('https://images.unsplash.com/photo-1514361892635-6b07e31e75f9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]">
       <div className="flex items-center justify-center pt-[100px]">
         <div className="w-full max-w-xs">
           <a
@@ -112,7 +112,8 @@ const LoginPage = () => {
                 Don't have an account?
                 <Link
                   to={"/register"}
-                  style={{ marginLeft: "5px", color: "blue" }}
+                  style={{ marginLeft: "5px" }}
+                  className="hover:text-blue-700	"
                 >
                   Register here
                 </Link>

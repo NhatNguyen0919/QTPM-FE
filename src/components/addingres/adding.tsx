@@ -29,28 +29,14 @@ const AddingRes = () => {
 
   const contentStyle: React.CSSProperties = {
     textAlign: "center",
-    height: 400,
-    width: 800,
+    height: "100%",
+    width: "100%",
     paddingInline: 48,
+    padding: "20px",
     lineHeight: "500px",
-  };
-
-  const props: UploadProps = {
-    name: "file",
-    action: "https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188",
-    headers: {
-      authorization: "authorization-text",
-    },
-    onChange(info) {
-      if (info.file.status !== "uploading") {
-        console.log(info.file, info.fileList);
-      }
-      if (info.file.status === "done") {
-        message.success(`${info.file.name} file uploaded successfully`);
-      } else if (info.file.status === "error") {
-        message.error(`${info.file.name} file upload failed.`);
-      }
-    },
+    backgroundColor: "white",
+    display: "flex",
+    alignItems: "center",
   };
 
   const handleClick = async (values: any) => {
@@ -104,76 +90,76 @@ const AddingRes = () => {
     };
   };
 
-  const handleChange = (value: string) => {
-    console.log(`selected ${value}`);
-  };
-
   return (
     <>
       <Layout style={contentStyle}>
-        <Form
-          {...formItemLayout}
-          variant="filled"
-          style={{ maxWidth: 600 }}
-          onFinish={handleClick}
-          form={form}
-        >
-          <Form.Item
-            label="Name"
-            name="name"
-            rules={[{ required: true, message: "Please input!" }]}
-            style={{ marginTop: "20px" }}
+        <div className="w-1/2 bg-white	">
+          <Form
+            {...formItemLayout}
+            variant="filled"
+            style={{ maxWidth: 600 }}
+            onFinish={handleClick}
+            form={form}
+            className="text-center items-center	"
           >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            label="Address"
-            name="address"
-            rules={[{ required: true, message: "Please input!" }]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            label="Source"
-            name="district"
-            rules={[{ required: true, message: "Please input!" }]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            label="Phone"
-            name="phone"
-            rules={[{ required: true, message: "Please input!" }]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            label="Description"
-            name="description"
-            rules={[{ required: true, message: "Please input!" }]}
-          >
-            <Input.TextArea />
-          </Form.Item>
+            <h1 className="font-bold text-xl">Adding Restaurant</h1>
+            <Form.Item
+              label="Name"
+              name="name"
+              rules={[{ required: true, message: "Please input!" }]}
+              style={{ marginTop: "20px" }}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              label="Address"
+              name="address"
+              rules={[{ required: true, message: "Please input!" }]}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              label="Source"
+              name="district"
+              rules={[{ required: true, message: "Please input!" }]}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              label="Phone"
+              name="phone"
+              rules={[{ required: true, message: "Please input!" }]}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              label="Description"
+              name="description"
+              rules={[{ required: true, message: "Please input!" }]}
+            >
+              <Input.TextArea />
+            </Form.Item>
 
-          <input onChange={convertBase64} accept="image/" type="file"></input>
-          <div>
-            {image == "" || image == null ? (
-              ""
-            ) : (
-              <img width={100} height={100} src={image} />
-            )}
-          </div>
+            <input onChange={convertBase64} accept="image/" type="file"></input>
+            <div>
+              {image == "" || image == null ? (
+                ""
+              ) : (
+                <img width={100} height={100} src={image} />
+              )}
+            </div>
 
-          <Button
-            type="default"
-            style={{ marginTop: "20px" }}
-            onClick={() => {
-              form.submit();
-            }}
-          >
-            Submit
-          </Button>
-        </Form>
+            <Button
+              type="default"
+              style={{ marginTop: "20px" }}
+              onClick={() => {
+                form.submit();
+              }}
+            >
+              Submit
+            </Button>
+          </Form>
+        </div>
       </Layout>
     </>
   );

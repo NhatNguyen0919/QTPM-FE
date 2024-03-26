@@ -1,8 +1,6 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import {
-  BankFilled,
-  MailFilled,
   SettingOutlined,
   UserOutlined,
   UserAddOutlined,
@@ -10,7 +8,8 @@ import {
   HomeFilled,
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
-import { Menu, Modal, notification } from "antd";
+import { Avatar, Menu, Modal, notification } from "antd";
+import Footer from "../footer/footer";
 
 const Header = () => {
   const [current, setCurrent] = useState("home");
@@ -60,7 +59,7 @@ const Header = () => {
     {
       label: "Account",
       key: "Account",
-      icon: <SettingOutlined />,
+      icon: <Avatar size="small" icon={<UserOutlined />} />,
       children: [
         {
           type: "group",
@@ -68,13 +67,10 @@ const Header = () => {
             {
               label: <Link to={"login"}>Login</Link>,
               key: "login",
-
-              icon: <UserOutlined />,
             },
             {
               label: <span onClick={handleLogOut}> Log out</span>,
               key: "logout",
-              icon: <UserAddOutlined />,
             },
           ],
         },
@@ -112,7 +108,7 @@ const Navbar = () => {
     <div>
       <Header />
       <Outlet />
-      <div>footer</div>
+      <Footer />
     </div>
   );
 };
