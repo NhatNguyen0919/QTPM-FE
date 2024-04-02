@@ -3,12 +3,9 @@ import {
   Form,
   Input,
   Layout,
-  Upload,
-  UploadProps,
-  message,
+
   notification,
 } from "antd";
-import { UploadOutlined } from "@ant-design/icons";
 import React, { useState } from "react";
 import axios from "axios";
 

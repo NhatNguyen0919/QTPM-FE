@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Image, Layout } from "antd";
 import { Content } from "antd/es/layout/layout";
@@ -7,13 +7,7 @@ import { Content } from "antd/es/layout/layout";
 const DetailRes = (props: any) => {
   const { id }: { id: string } = useParams();
   const [detailData, setDetailData] = useState<any>([]);
-  const defaultProps = {
-    center: {
-      lat: 10.99835602,
-      lng: 77.01502627,
-    },
-    zoom: 11,
-  };
+
   useEffect(() => {
     getDetailData();
   }, []);

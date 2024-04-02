@@ -1,10 +1,7 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
-  SettingOutlined,
   UserOutlined,
-  UserAddOutlined,
-  PhoneFilled,
   HomeFilled,
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
@@ -17,7 +14,7 @@ const Header = () => {
   const navigate = useNavigate();
   let token = localStorage.getItem("token");
 
-  useEffect(() => {});
+  useEffect(() => { });
 
   const showModal = () => {
     setIsModalOpen(true);
