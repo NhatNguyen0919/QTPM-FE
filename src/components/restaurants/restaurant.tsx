@@ -36,7 +36,7 @@ const RestaurantPage = () => {
     navigate(`/restaurant/${values}`);
   };
 
-  const handleOnChange: SearchProps["onSearch"] = async (value, _e, info) => {
+  const handleOnChange: SearchProps["onSearch"] = async (value, _e) => {
     setDataDis(value);
     try {
       const res: any = await axios.get(

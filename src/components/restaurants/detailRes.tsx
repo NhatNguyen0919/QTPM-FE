@@ -4,8 +4,8 @@ import { useParams } from "react-router-dom";
 import { Image, Layout } from "antd";
 import { Content } from "antd/es/layout/layout";
 
-const DetailRes = (props: any) => {
-  const { id }: { id: string } = useParams();
+const DetailRes = () => {
+  const id:Readonly<any> = useParams<any>();
   const [detailData, setDetailData] = useState<any>([]);
 
   useEffect(() => {
@@ -72,14 +72,14 @@ const DetailRes = (props: any) => {
                 <span style={{ marginBottom: "20px" }}>
                   Description : {detailData.description}
                 </span>
-                <iframe
+                {/* <iframe
                   src={detailData.district}
                   width="350"
                   height="350"
                   allowfullscreen=""
                   loading="lazy"
                   referrerpolicy="no-referrer-when-downgrade"
-                ></iframe>
+                ></iframe> */}
               </div>
             </div>
           </Content>
